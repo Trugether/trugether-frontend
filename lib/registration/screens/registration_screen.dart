@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:trugether_frontend/home/screens/home_screen.dart';
 import 'package:trugether_frontend/login/screens/login_screen.dart';
 
 class RegistrationScreen extends StatefulWidget {
@@ -145,6 +146,12 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                         height: 45,
                         child: ElevatedButton(
                           onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => HomeScreen(),
+                              ),
+                            );
                             // Handle login logic
                           },
                           style: ElevatedButton.styleFrom(
