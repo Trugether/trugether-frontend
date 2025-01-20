@@ -66,6 +66,7 @@ flutter:
     - assets/images/grid/image6.jpg
     - assets/images/grid/google.png
     - assets/images/logo/logo.png
+    - assets/images/logo/newroom.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
