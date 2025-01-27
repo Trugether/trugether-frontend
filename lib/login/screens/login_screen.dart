@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:trugether_frontend/explore/screens/music_player_screen.dart';
 import 'package:trugether_frontend/home/screens/home_screen.dart';
 import 'package:trugether_frontend/registration/screens/registration_screen.dart';
 
@@ -19,7 +20,7 @@ class _LoginScreenState extends State<LoginScreen> {
       body: Stack(
         children: [
           Opacity(
-            opacity: 0.1,
+            opacity: 0.2,
             child: GridView.count(
               crossAxisCount: 3,
               children: List.generate(
@@ -155,7 +156,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => RegistrationScreen(),
+                              builder: (context) => MusicPlayerScreen(),
                             ),
                           );
                         },
