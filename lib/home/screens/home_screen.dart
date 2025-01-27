@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:trugether_frontend/explore/screens/search_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -10,11 +11,12 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int _currentIndex = 0;
 
-  final List<Widget> _pages = [HomeTab(), ExploreTab(), NewRoomTab()];
+  final List<Widget> _pages = [HomeTab(), SearchScreen(), CreateRoomTab()];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       body: _pages[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
@@ -28,13 +30,13 @@ class _HomeScreenState extends State<HomeScreen> {
           BottomNavigationBarItem(icon: Icon(Icons.explore), label: 'Explore'),
           BottomNavigationBarItem(
             icon: Icon(Icons.queue_music),
-            label: 'New Room',
+            label: 'Create Room',
           ),
         ],
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.black,
         selectedItemColor: Colors.deepPurple,
-        unselectedItemColor: Colors.grey,
-        showUnselectedLabels: true,
+        unselectedItemColor: Colors.white,
+        showUnselectedLabels: false,
         type: BottomNavigationBarType.fixed,
       ),
     );
@@ -48,8 +50,10 @@ class HomeTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       appBar: AppBar(
-        title: const Text("Home"),
+        backgroundColor: Colors.black,
+        title: const Text("Home", style: TextStyle(color: Colors.white)),
         automaticallyImplyLeading: false,
       ),
 
@@ -58,7 +62,11 @@ class HomeTab extends StatelessWidget {
         children: [
           const Text(
             "Albums",
-            style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+            style: TextStyle(
+              fontSize: 22,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+            ),
           ),
           SizedBox(
             height: 150,
@@ -83,7 +91,11 @@ class HomeTab extends StatelessWidget {
           const SizedBox(height: 16),
           const Text(
             "Songs",
-            style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+            style: TextStyle(
+              fontSize: 22,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+            ),
           ),
           ListView.builder(
             shrinkWrap: true,
@@ -92,8 +104,14 @@ class HomeTab extends StatelessWidget {
             itemBuilder: (context, index) {
               return ListTile(
                 leading: const Icon(Icons.music_note, color: Colors.deepPurple),
-                title: Text("Song ${index + 1}"),
-                subtitle: const Text("Artist Name"),
+                title: Text(
+                  "Song ${index + 1}",
+                  style: TextStyle(color: Colors.white),
+                ),
+                subtitle: const Text(
+                  "Artist Name",
+                  style: TextStyle(color: Colors.white),
+                ),
               );
             },
           ),
@@ -104,77 +122,111 @@ class HomeTab extends StatelessWidget {
 }
 
 // Explore Tab
-class ExploreTab extends StatelessWidget {
-  const ExploreTab({super.key});
+// class ExploreTab extends StatelessWidget {
+//   const ExploreTab({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Explore"),
-        automaticallyImplyLeading: false,
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const TextField(
-              decoration: InputDecoration(
-                labelText: "Search",
-                prefixIcon: Icon(Icons.search),
-                border: OutlineInputBorder(),
-              ),
-            ),
-            const SizedBox(height: 16),
-            const Text(
-              "Top Searches",
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 8),
-            ListView.builder(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              itemCount: 3,
-              itemBuilder: (context, index) {
-                return ListTile(title: Text("Search Item ${index + 1}"));
-              },
-            ),
-            const SizedBox(height: 16),
-            const Text(
-              "Trending Songs",
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            ),
-            Expanded(
-              child: ListView.builder(
-                itemCount: 10,
-                itemBuilder: (context, index) {
-                  return ListTile(
-                    leading: const Icon(
-                      Icons.trending_up,
-                      color: Colors.deepPurple,
-                    ),
-                    title: Text("Trending Song ${index + 1}"),
-                  );
-                },
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       backgroundColor: Colors.black,
+//       appBar: AppBar(
+//         backgroundColor: Colors.black,
+//         title: const Text("Explore", style: TextStyle(color: Colors.white)),
+//         automaticallyImplyLeading: false,
+//       ),
+//       body: Padding(
+//         padding: const EdgeInsets.all(16),
+//         child: Column(
+//           crossAxisAlignment: CrossAxisAlignment.start,
+//           children: [
+//             Expanded(
+//               child: const TextField(
+//                 decoration: InputDecoration(
+//                   border: OutlineInputBorder(
+//                     borderRadius: BorderRadius.all(Radius.circular(20.0)),
+//                   ),
+//                   prefixIconColor: Colors.white,
+//                   prefixIcon: Icon(Icons.search),
+//                   hintText: "Music, Artists",
+//                   hintStyle: TextStyle(color: Colors.white),
+//                   contentPadding: EdgeInsets.symmetric(
+//                     vertical: 8,
+//                     horizontal: 20,
+//                   ),
+//                 ),
+//                 style: TextStyle(color: Colors.white),
+//               ),
+//             ),
+//             const SizedBox(height: 16),
+//             const Text(
+//               "Top Searches",
+//               style: TextStyle(
+//                 fontSize: 20,
+//                 fontWeight: FontWeight.bold,
+//                 color: Colors.white,
+//               ),
+//             ),
+//             const SizedBox(height: 8),
+//             ListView.builder(
+//               shrinkWrap: true,
+//               physics: const NeverScrollableScrollPhysics(),
+//               itemCount: 3,
+//               itemBuilder: (context, index) {
+//                 return ListTile(
+//                   title: Text(
+//                     "Search Item ${index + 1}",
+//                     style: TextStyle(color: Colors.white),
+//                   ),
+//                 );
+//               },
+//             ),
+//             const SizedBox(height: 16),
+//             const Text(
+//               "Trending Songs",
+//               style: TextStyle(
+//                 fontSize: 20,
+//                 fontWeight: FontWeight.bold,
+//                 color: Colors.white,
+//               ),
+//             ),
+//             Expanded(
+//               child: ListView.builder(
+//                 itemCount: 10,
+//                 itemBuilder: (context, index) {
+//                   return ListTile(
+//                     leading: const Icon(
+//                       Icons.trending_up,
+//                       color: Colors.deepPurple,
+//                     ),
+//                     title: Text(
+//                       "Trending Song ${index + 1}",
+//                       style: TextStyle(color: Colors.white),
+//                     ),
+//                   );
+//                 },
+//               ),
+//             ),
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+// }
 
 // New Room Tab
-class NewRoomTab extends StatelessWidget {
-  const NewRoomTab({super.key});
+class CreateRoomTab extends StatelessWidget {
+  const CreateRoomTab({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       appBar: AppBar(
-        title: const Text("New Room"),
+        backgroundColor: Colors.black,
+        title: const Text(
+          "Start a Room",
+          style: TextStyle(color: Colors.white),
+        ),
         automaticallyImplyLeading: false,
       ),
       body: Padding(
@@ -217,13 +269,21 @@ class NewRoomTab extends StatelessWidget {
             const SizedBox(height: 16),
             const Text(
               "Get a link that you can share",
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 14),
             const Text(
               "Tap New room to get a link that you can send to people that you want to listen songs with",
-              style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
               textAlign: TextAlign.center,
             ),
           ],

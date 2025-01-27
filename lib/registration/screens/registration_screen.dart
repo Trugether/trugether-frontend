@@ -18,7 +18,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       body: Stack(
         children: [
           Opacity(
-            opacity: 0.1,
+            opacity: 0.2,
             child: GridView.count(
               crossAxisCount: 3,
               children: List.generate(
